@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 19th Benita ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+
+:root{
+    --bg:#e9e5df;
+    --paper:#f3f0eb;
+    --ink:#29272a;
+    --muted:#716c70;
+    --rose:#ae7185;
+    --rose-soft:#d9c5cc;
+    --gold:#b99b61;
+    --line:rgba(41,39,42,.14);
+    --shadow:rgba(40,32,35,.07);
+
+    --mx:0;
+    --my:0;
+}
+
+/* =========================================================
+   THEMES
+========================================================= */
+
+body.theme-soft{
+    --bg:#e9e5df;
+    --paper:#f3f0eb;
+    --ink:#29272a;
+    --muted:#716c70;
+    --rose:#ae7185;
+    --rose-soft:#d9c5cc;
+    --gold:#b99b61;
+    --line:rgba(41,39,42,.14);
+    --shadow:rgba(40,32,35,.07);
+}
+
+body.theme-warm{
+    --bg:#e4ddd4;
+    --paper:#eee8df;
+    --ink:#302a2b;
+    --muted:#756d6d;
+    --rose:#a96979;
+    --rose-soft:#d6bdc5;
+    --gold:#b2935b;
+    --line:rgba(48,42,43,.15);
+    --shadow:rgba(45,35,35,.08);
+}
+
+body.theme-night{
+    --bg:#29272c;
+    --paper:#312e34;
+    --ink:#eee9e4;
+    --muted:#b4adb0;
+    --rose:#d19aaa;
+    --rose-soft:#65515a;
+    --gold:#c9aa71;
+    --line:rgba(238,233,228,.16);
+    --shadow:rgba(0,0,0,.22);
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Inter",sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+
+    transition:
+        background-color .5s ease,
+        color .5s ease;
+}
+
+button{
+    font:inherit;
+}
+
+/* =========================================================
+   FULL SCREEN SECTIONS
+========================================================= */
+
+.section{
+    width:100%;
+    height:100svh;
+    min-height:650px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:var(--bg);
+
+    transition:
+        background-color .5s ease;
+}
+
+.inner{
+    width:min(1080px,88%);
+    margin:auto;
+
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   DOT NAVIGATION
+========================================================= */
+
+.dots{
+    position:fixed;
+    right:24px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+
+    z-index:100;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    border:1px solid var(--ink);
+    background:transparent;
+
+    opacity:.3;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.dot.active{
+    background:var(--rose);
+    border-color:var(--rose);
+
+    opacity:1;
+
+    transform:scale(1.35);
+}
+
+/* =========================================================
+   CONTINUE BUTTON
+========================================================= */
+
+.continue{
+    position:absolute;
+
+    left:50%;
+    bottom:26px;
+
+    transform:translateX(-50%);
+
+    z-index:30;
+}
+
+.continue button{
+    border:1px solid var(--line);
+
+    background:var(--paper);
+
+    color:var(--muted);
+
+    border-radius:30px;
+
+    padding:11px 20px;
+
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+    transition:
+        background .4s ease,
+        color .4s ease,
+        border .4s ease,
+        transform .3s ease;
+}
+
+.continue button:hover{
+    color:var(--ink);
+
+    border-color:var(--ink);
+
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   BACKGROUND SWITCHER
+========================================================= */
+
+.theme-control{
+    position:fixed;
+
+    left:22px;
+    bottom:22px;
+
+    z-index:100;
+}
+
+.theme-toggle{
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    background:var(--paper);
+    color:var(--ink);
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    transition:.3s ease;
+}
+
+.theme-toggle:hover{
+    transform:scale(1.05);
+}
+
+.theme-options{
+    position:absolute;
+
+    left:0;
+    bottom:45px;
+
+    padding:10px;
+
+    border:1px solid var(--line);
+
+    background:var(--paper);
+
+    display:flex;
+    gap:8px;
+
+    border-radius:20px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateY(5px);
+
+    transition:.3s ease;
+}
+
+.theme-control.open .theme-options{
+    opacity:1;
+    pointer-events:auto;
+
+    transform:translateY(0);
+}
+
+.theme-choice{
+    width:18px;
+    height:18px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    cursor:pointer;
+}
+
+.theme-choice[data-theme="soft"]{
+    background:#e9e5df;
+}
+
+.theme-choice[data-theme="warm"]{
+    background:#cfc3b5;
+}
+
+.theme-choice[data-theme="night"]{
+    background:#29272c;
+}
+
+/* =========================================================
+   GENERIC TEXT
+========================================================= */
+
+.eyebrow{
+    font-size:9px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    color:var(--muted);
+
+    margin-bottom:23px;
+}
+
+/* =========================================================
+   3D LANDING
+========================================================= */
+
+#landing{
+    background:
+        radial-gradient(
+            circle at 50% 46%,
+            rgba(174,113,133,.13),
+            transparent 32%
+        ),
+        var(--bg);
+
+    perspective:1400px;
+
+    text-align:center;
+}
+
+/* main scene */
+
+.landing{
+    width:min(1000px,90%);
+    height:100%;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+}
+
+/* =========================================================
+   CENTRAL GLOW
+========================================================= */
+
+.landing-glow{
+    position:absolute;
+
+    width:440px;
+    height:440px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(190,137,153,.20),
+            rgba(190,137,153,.06) 40%,
+            transparent 72%
+        );
+
+    filter:blur(12px);
+
+    transform:translateZ(-180px);
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   GLASS SHAPE
+========================================================= */
+
+.landing-plane{
+    position:absolute;
+
+    width:430px;
+    height:500px;
+
+    border-radius:44% 56% 51% 49%;
+
+    border:1px solid rgba(255,255,255,.22);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.02)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.35),
+        0 30px 100px rgba(50,35,40,.05);
+
+    transform:
+        translateZ(15px)
+        rotate(-8deg);
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   FLOATING OBJECTS
+========================================================= */
+
+.float{
+    position:absolute;
+
+    transform-style:preserve-3d;
+
+    pointer-events:none;
+
+    user-select:none;
+}
+
+.float-card{
+    min-width:90px;
+
+    padding:14px 18px;
+
+    border:1px solid rgba(255,255,255,.45);
+
+    background:rgba(255,255,255,.14);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    border-radius:16px;
+
+    box-shadow:
+        0 18px 45px rgba(40,30,35,.08),
+        inset 0 1px 0 rgba(255,255,255,.45);
+
+    color:var(--muted);
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:23px;
+}
+
+.float-card.small{
+    min-width:auto;
+
+    padding:11px 16px;
+
+    font-size:18px;
+}
+
+/* top left */
+
+.float-one{
+    left:9%;
+    top:24%;
+
+    transform:
+        translate3d(
+            calc(var(--mx) * -.7px),
+            calc(var(--my) * -.7px),
+            110px
+        )
+        rotateZ(-10deg)
+        rotateY(10deg);
+
+    animation:floatOne 5.5s ease-in-out infinite;
+}
+
+/* top right */
+
+.float-two{
+    right:10%;
+    top:23%;
+
+    transform:
+        translate3d(
+            calc(var(--mx) * .8px),
+            calc(var(--my) * .5px),
+            125px
+        )
+        rotateZ(8deg)
+        rotateY(-10deg);
+
+    animation:floatTwo 6s ease-in-out infinite;
+}
+
+/* lower left */
+
+.float-three{
+    left:16%;
+    bottom:23%;
+
+    transform:
+        translate3d(
+            calc(var(--mx) * -.4px),
+            calc(var(--my) * .6px),
+            75px
+        )
+        rotateZ(7deg);
+
+    animation:floatThree 6.2s ease-in-out infinite;
+}
+
+/* lower right */
+
+.float-four{
+    right:15%;
+    bottom:24%;
+
+    transform:
+        translate3d(
+            calc(var(--mx) * .6px),
+            calc(var(--my) * -.5px),
+            95px
+        )
+        rotateZ(-7deg);
+
+    animation:floatFour 5.8s ease-in-out infinite;
+}
+
+/* heart */
+
+.float-heart{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:36px;
+
+    color:var(--rose);
+
+    opacity:.55;
+
+    transform:
+        translate3d(
+            calc(var(--mx) * .3px),
+            calc(var(--my) * .3px),
+            150px
+        );
+
+    animation:heartFloat 4.8s ease-in-out infinite;
+}
+
+/* stars */
+
+.star{
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:var(--rose);
+
+    opacity:.35;
+
+    box-shadow:
+        0 0 12px rgba(174,113,133,.25);
+}
+
+.star-one{
+    left:23%;
+    top:18%;
+
+    transform:translateZ(120px);
+}
+
+.star-two{
+    right:27%;
+    top:15%;
+
+    transform:translateZ(150px);
+}
+
+.star-three{
+    left:28%;
+    bottom:18%;
+
+    transform:translateZ(110px);
+}
+
+.star-four{
+    right:25%;
+    bottom:18%;
+
+    transform:translateZ(100px);
+}
+
+/* =========================================================
+   LANDING CENTER
+========================================================= */
+
+.landing-center{
+    position:relative;
+
+    z-index:10;
+
+    transform-style:preserve-3d;
+
+    transform:
+        translate3d(
+            calc(var(--mx) * .15px),
+            calc(var(--my) * .15px),
+            180px
+        );
+
+    transition:
+        transform .12s ease-out;
+}
+
+.landing .eyebrow{
+    margin-bottom:18px;
+
+    font-size:9px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+}
+
+/* Name */
+
+.landing-title{
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:500;
+
+    font-size:clamp(80px,11vw,150px);
+
+    line-height:.8;
+
+    letter-spacing:-6px;
+
+    color:var(--ink);
+
+    text-shadow:
+        0 10px 35px rgba(40,30,35,.07);
+}
+
+/* =========================================================
+   AGE
+========================================================= */
+
+.age-wrap{
+    margin-top:20px;
+
+    height:150px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    perspective:600px;
+}
+
+.age{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(125px,14vw,185px);
+
+    line-height:.75;
+
+    font-weight:500;
+
+    letter-spacing:-8px;
+
+    color:var(--rose);
+
+    font-variant-numeric:tabular-nums;
+
+    text-shadow:
+        0 12px 30px rgba(174,113,133,.14);
+}
+
+/* =========================================================
+   LANDING ANIMATIONS
+========================================================= */
+
+@keyframes floatOne{
+
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:-12px;
+    }
+}
+
+@keyframes floatTwo{
+
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:10px;
+    }
+}
+
+@keyframes floatThree{
+
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:-9px;
+    }
+}
+
+@keyframes floatFour{
+
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:11px;
+    }
+}
+
+@keyframes heartFloat{
+
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:-14px;
+    }
+}
+
+/* =========================================================
+   NIGHT LANDING
+========================================================= */
+
+body.theme-night .float-card{
+    border-color:rgba(255,255,255,.14);
+
+    background:rgba(255,255,255,.045);
+}
+
+body.theme-night .landing-plane{
+    border-color:rgba(255,255,255,.12);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.05),
+            rgba(255,255,255,.015)
+        );
+}
+
+/* =========================================================
+   BIBLE SECTION
+========================================================= */
+
+#bible{
+    background:var(--paper);
+}
+
+.bible{
+    max-width:850px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.bible h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:500;
+
+    font-size:clamp(55px,7vw,88px);
+
+    line-height:.9;
+
+    margin-bottom:38px;
+}
+
+.quote{
+    min-height:220px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:0 20px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(28px,3.3vw,44px);
+
+    line-height:1.25;
+
+    color:var(--ink);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+.reference{
+    min-height:18px;
+
+    margin-top:20px;
+
+    color:var(--rose);
+
+    font-size:10px;
+
+    letter-spacing:2.5px;
+
+    text-transform:uppercase;
+}
+
+.quote-controls{
+    margin-top:35px;
+}
+
+.next{
+    border:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--ink);
+
+    padding:12px 23px;
+
+    border-radius:30px;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.next:hover{
+    background:var(--ink);
+
+    color:var(--bg);
+}
+
+.counter{
+    position:absolute;
+
+    right:0;
+    bottom:0;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+/* =========================================================
+   LETTER
+========================================================= */
+
+#letter{
+    background:var(--bg);
+}
+
+.letter-layout{
+    display:grid;
+
+    grid-template-columns:minmax(0,1fr) 285px;
+
+    gap:75px;
+
+    align-items:center;
+}
+
+.letter-card{
+    background:var(--paper);
+
+    padding:44px 52px;
+
+    box-shadow:
+        0 18px 55px var(--shadow);
+
+    position:relative;
+
+    transition:
+        background-color .5s ease,
+        box-shadow .5s ease;
+}
+
+.letter-card::before{
+    content:"";
+
+    position:absolute;
+
+    inset:11px;
+
+    border:1px solid var(--line);
+
+    pointer-events:none;
+
+    opacity:.4;
+}
+
+.letter-card h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:500;
+
+    font-size:clamp(48px,5vw,67px);
+
+    line-height:.88;
+
+    margin-bottom:28px;
+}
+
+.letter-card p{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:18px;
+
+    line-height:1.48;
+
+    color:var(--ink);
+
+    margin-bottom:13px;
+}
+
+.prayer{
+    padding-top:18px;
+
+    margin-top:19px;
+
+    border-top:1px solid var(--line);
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+
+    line-height:1.45;
+
+    font-style:italic;
+
+    color:var(--muted);
+}
+
+.signature{
+    margin-top:20px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:25px;
+
+    color:var(--rose);
+}
+
+/* =========================================================
+   KALI
+========================================================= */
+
+.kali-side{
+    width:100%;
+}
+
+.kali-frame{
+    position:relative;
+}
+
+.kali-frame::before{
+    content:"";
+
+    position:absolute;
+
+    inset:-12px 12px 12px -12px;
+
+    border:1px solid var(--rose-soft);
+
+    z-index:-1;
+}
+
+.kali-image{
+    width:100%;
+
+    aspect-ratio:4/5;
+
+    object-fit:cover;
+
+    display:block;
+
+    filter:saturate(.78);
+}
+
+.kali-caption{
+    margin-top:16px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:15px;
+
+    line-height:1.4;
+
+    color:var(--muted);
+
+    font-style:italic;
+}
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(18px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.section.visible .reveal{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+.delay-1{
+    transition-delay:.12s;
+}
+
+.delay-2{
+    transition-delay:.22s;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
+
+    .section{
+        min-height:680px;
+    }
+
+    .dots{
+        right:12px;
+    }
+
+    .theme-control{
+        left:15px;
+        bottom:16px;
+    }
+
+    /* LANDING */
+
+    .landing{
+        width:88%;
+    }
+
+    .landing-plane{
+        width:310px;
+        height:400px;
+    }
+
+    .landing-glow{
+        width:310px;
+        height:310px;
+    }
+
+    .landing-title{
+        font-size:clamp(72px,20vw,110px);
+
+        letter-spacing:-4px;
+    }
+
+    .age-wrap{
+        height:105px;
+    }
+
+    .age{
+        font-size:110px;
+    }
+
+    .float-one{
+        left:0;
+        top:23%;
+    }
+
+    .float-two{
+        right:0;
+        top:22%;
+    }
+
+    .float-three,
+    .float-four,
+    .star-three,
+    .star-four{
+        display:none;
+    }
+
+    .float-heart{
+        right:12%;
+        bottom:21%;
+    }
+
+    /* BIBLE */
+
+    .bible h2{
+        font-size:60px;
+
+        margin-bottom:27px;
+    }
+
+    .quote{
+        min-height:240px;
+
+        font-size:28px;
+
+        padding:0 5px;
+    }
+
+    .counter{
+        right:0;
+        bottom:-35px;
+    }
+
+    /* LETTER */
+
+    .letter-layout{
+        display:block;
+
+        width:min(680px,90%);
+    }
+
+    .letter-card{
+        padding:34px 29px;
+    }
+
+    .letter-card h2{
+        font-size:51px;
+
+        margin-bottom:22px;
+    }
+
+    .letter-card p{
+        font-size:17px;
+
+        line-height:1.4;
+
+        margin-bottom:11px;
+    }
+
+    .prayer{
+        font-size:15px;
+
+        margin-top:15px;
+
+        padding-top:15px;
+    }
+
+    .signature{
+        font-size:23px;
+
+        margin-top:15px;
+    }
+
+    .kali-side{
+        position:absolute;
+
+        right:31px;
+        top:31px;
+
+        width:70px;
+
+        z-index:5;
+    }
+
+    .kali-frame::before{
+        inset:-5px 5px 5px -5px;
+    }
+
+    .kali-caption{
+        display:none;
+    }
+
+    .continue{
+        bottom:16px;
+    }
+}
+
+@media(max-height:700px) and (min-width:851px){
+
+    .landing-title{
+        font-size:90px;
+    }
+
+    .age-wrap{
+        height:90px;
+    }
+
+    .age{
+        font-size:110px;
+    }
+
+    .bible h2{
+        font-size:64px;
+    }
+
+    .quote{
+        min-height:175px;
+
+        font-size:32px;
+    }
+
+    .letter-card{
+        padding:31px 42px;
+    }
+
+    .letter-card h2{
+        font-size:55px;
+    }
+
+    .letter-card p{
+        font-size:16px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    *,
+    *::before,
+    *:after{
+        transition:none !important;
+        animation:none !important;
+    }
+}
+</style>
+</head>
+
+<body class="theme-soft">
+
+<!-- =====================================================
+     DOT NAVIGATION
+===================================================== -->
+
+<nav class="dots">
+
+    <button
+        class="dot active"
+        data-index="0"
+        aria-label="Home">
+    </button>
+
+    <button
+        class="dot"
+        data-index="1"
+        aria-label="Bible">
+    </button>
+
+    <button
+        class="dot"
+        data-index="2"
+        aria-label="Letter">
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     BACKGROUND SWITCHER
+===================================================== -->
+
+<div class="theme-control">
+
+    <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Change background">
+        ◐
+    </button>
+
+    <div class="theme-options">
+
+        <button
+            class="theme-choice"
+            data-theme="soft"
+            aria-label="Soft background">
+        </button>
+
+        <button
+            class="theme-choice"
+            data-theme="warm"
+            aria-label="Warm background">
+        </button>
+
+        <button
+            class="theme-choice"
+            data-theme="night"
+            aria-label="Night background">
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LANDING
+===================================================== -->
+
+<section class="section visible" id="landing">
+
+    <div class="landing-glow"></div>
+
+    <div class="landing-plane"></div>
+
+
+    <!-- floating visual elements -->
+
+    <div class="float float-one">
+
+        <div class="float-card">
+            ♡
+        </div>
+
+    </div>
+
+    <div class="float float-two">
+
+        <div class="float-card small">
+            ✦
+        </div>
+
+    </div>
+
+
+    <div class="float float-three">
+
+        <div class="float-card small">
+            ♡
+        </div>
+
+    </div>
+
+
+    <div class="float float-four">
+
+        <div class="float-card">
+            ♡
+        </div>
+
+    </div>
+
+
+    <div class="float float-heart">
+        ♡
+    </div>
+
+
+    <!-- stars -->
+
+    <div class="float star star-one"></div>
+    <div class="float star star-two"></div>
+    <div class="float star star-three"></div>
+    <div class="float star star-four"></div>
+
+
+    <!-- center -->
+
+    <div class="inner landing">
+
+        <div class="landing-center reveal">
+
+           <!--<div class="eyebrow">
+                Happy Birthday
+            </div>-->
+
+            <h1 class="landing-title">
+                Happy Birthday
+            </h1>
+
+            <div class="age-wrap">
+
+                <div class="age" id="age">
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="continue">
+
+        <button data-next="1">
+            Begin ↓
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     BIBLE SECTION
+===================================================== -->
+
+<section class="section" id="bible">
+
+    <div class="inner bible reveal">
+
+        <div class="eyebrow">
+            For your journey
+        </div>
+
+        <h2>
+            A few words from Scripture
+        </h2>
+
+        <div class="quote" id="quote">
+            God is with you, strengthening and helping
+            you through whatever lies ahead.
+        </div>
+
+        <div class="reference" id="reference">
+            Isaiah 41:10 · ESV
+        </div>
+
+        <div class="quote-controls">
+
+            <button class="next" id="nextQuote">
+                Another passage
+            </button>
+
+        </div>
+
+        <div class="counter" id="counter">
+            01 / 10
+        </div>
+
+    </div>
+
+
+    <div class="continue">
+
+        <button data-next="2">
+            Your letter ↓
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LETTER
+===================================================== -->
+
+<section class="section" id="letter">
+
+    <div class="inner letter-layout">
+
+        <div class="letter-card reveal">
+
+            <div class="eyebrow">
+                For Benita
+            </div>
+
+            <h2>
+                A letter<br>
+                for you.
+            </h2>
+
+            <p>
+                Happy 19th birthday, Benita.
+            </p>
+
+            <p>
+                I hope today reminds you of how loved
+                you are and how much there is waiting
+                for you in this next chapter.
+            </p>
+
+            <p>
+                I pray that God gives you wisdom when
+                you need direction, courage when things
+                get difficult, and peace when life feels
+                overwhelming.
+            </p>
+
+            <p>
+                Keep growing, keep dreaming, and keep
+                trusting Him. You don't have to know
+                everything yet. One step at a time is enough.
+            </p>
+
+            <p>
+                And selfishly, I hope this new chapter
+                gives us many more memories, laughs,
+                conversations and moments together.
+            </p>
+
+            <div class="prayer">
+                May God bless this year of your life,
+                protect you, guide you, and fill it with
+                joy, purpose and beautiful memories.
+            </div>
+
+            <div class="signature">
+                Happy 19th, Benita ♡
+            </div>
+
+        </div>
+
+
+        <div class="kali-side reveal delay-2">
+
+            <div class="kali-frame">
+
+                <img
+                    src="kali.jpeg"
+                    alt="Kali"
+                    class="kali-image"
+                >
+
+            </div>
+
+            <div class="kali-caption">
+                One little Kali moment. ♡
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   SECTION NAVIGATION
+===================================================== */
+
+const sections = [
+    document.getElementById("landing"),
+    document.getElementById("bible"),
+    document.getElementById("letter")
+];
+
+const dots =
+    document.querySelectorAll(".dot");
+
+let currentSection = 0;
+
+let wheelLock = false;
+
+
+/* =====================================================
+   GO TO SECTION
+===================================================== */
+
+function goToSection(index){
+
+    if(index < 0 || index >= sections.length){
+        return;
+    }
+
+    currentSection = index;
+
+    sections[index].scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+    updateDots();
+}
+
+
+/* =====================================================
+   DOTS
+===================================================== */
+
+function updateDots(){
+
+    dots.forEach((dot,index)=>{
+
+        dot.classList.toggle(
+            "active",
+            index === currentSection
+        );
+
+    });
+
+}
+
+
+dots.forEach(dot=>{
+
+    dot.addEventListener("click",()=>{
+
+        goToSection(
+            Number(dot.dataset.index)
+        );
+
+    });
+
+});
+
+
+/* =====================================================
+   CONTINUE BUTTONS
+===================================================== */
+
+document
+.querySelectorAll(".continue button")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        goToSection(
+            Number(button.dataset.next)
+        );
+
+    });
+
+});
+
+
+/* =====================================================
+   ARROW KEYS
+===================================================== */
+
+document.addEventListener("keydown",(event)=>{
+
+    if(
+        event.key === "ArrowDown" ||
+        event.key === "ArrowRight"
+    ){
+
+        event.preventDefault();
+
+        goToSection(
+            Math.min(
+                currentSection + 1,
+                sections.length - 1
+            )
+        );
+
+    }
+
+
+    if(
+        event.key === "ArrowUp" ||
+        event.key === "ArrowLeft"
+    ){
+
+        event.preventDefault();
+
+        goToSection(
+            Math.max(
+                currentSection - 1,
+                0
+            )
+        );
+
+    }
+
+});
+
+
+/* =====================================================
+   WHEEL
+===================================================== */
+
+window.addEventListener(
+    "wheel",
+    event=>{
+
+        if(wheelLock){
+            return;
+        }
+
+        if(Math.abs(event.deltaY) < 20){
+            return;
+        }
+
+        wheelLock = true;
+
+
+        if(event.deltaY > 0){
+
+            goToSection(
+                Math.min(
+                    currentSection + 1,
+                    sections.length - 1
+                )
+            );
+
+        }else{
+
+            goToSection(
+                Math.max(
+                    currentSection - 1,
+                    0
+                )
+            );
+
+        }
+
+
+        setTimeout(()=>{
+
+            wheelLock = false;
+
+        },850);
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =====================================================
+   SWIPE
+===================================================== */
+
+let touchStartY = 0;
+
+
+window.addEventListener(
+    "touchstart",
+    event=>{
+
+        touchStartY =
+            event.touches[0].clientY;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+window.addEventListener(
+    "touchend",
+    event=>{
+
+        const touchEndY =
+            event.changedTouches[0].clientY;
+
+        const distance =
+            touchStartY - touchEndY;
+
+        if(Math.abs(distance) < 50){
+            return;
+        }
+
+
+        if(distance > 0){
+
+            goToSection(
+                Math.min(
+                    currentSection + 1,
+                    sections.length - 1
+                )
+            );
+
+        }else{
+
+            goToSection(
+                Math.max(
+                    currentSection - 1,
+                    0
+                )
+            );
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =====================================================
+   INTERSECTION OBSERVER
+===================================================== */
+
+const observer =
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(!entry.isIntersecting){
+                    return;
+                }
+
+
+                entry.target.classList.add("visible");
+
+
+                const index =
+                    sections.indexOf(entry.target);
+
+
+                if(index !== -1){
+
+                    currentSection = index;
+
+                    updateDots();
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.6
+        }
+    );
+
+
+sections.forEach(section=>{
+
+    observer.observe(section);
+
+});
+
+
+/* =====================================================
+   AGE COUNTER — 0 TO 18
+===================================================== */
+
+const ageElement =
+    document.getElementById("age");
+
+const ageDuration = 1900;
+
+const ageStart =
+    performance.now();
+
+
+function animateAge(now){
+
+    const progress =
+        Math.min(
+            (now - ageStart) / ageDuration,
+            1
+        );
+
+
+    const eased =
+        1 - Math.pow(1 - progress,4);
+
+
+    const value =
+        Math.floor(eased * 19);
+
+
+    ageElement.textContent =
+        value;
+
+
+    /* subtle 3D rotation while counting */
+
+    const rotation =
+        (1 - progress) * 12;
+
+
+    const depth =
+        70 + (progress * 30);
+
+
+    ageElement.style.transform =
+        `translateZ(${depth}px) rotateX(${rotation}deg)`;
+
+
+    if(progress < 1){
+
+        requestAnimationFrame(
+            animateAge
+        );
+
+    }else{
+
+        ageElement.textContent =
+            "19";
+
+        ageElement.style.transform =
+            "translateZ(100px) rotateX(0deg)";
+
+    }
+
+}
+
+
+requestAnimationFrame(
+    animateAge
+);
+
+
+/* =====================================================
+   LANDING MOUSE PARALLAX
+===================================================== */
+
+const landing =
+    document.getElementById("landing");
+
+
+landing.addEventListener(
+    "mousemove",
+    event=>{
+
+        const rect =
+            landing.getBoundingClientRect();
+
+
+        const x =
+            event.clientX - rect.left;
+
+
+        const y =
+            event.clientY - rect.top;
+
+
+        const centerX =
+            rect.width / 2;
+
+
+        const centerY =
+            rect.height / 2;
+
+
+        const mouseX =
+            ((x - centerX) / centerX) * 20;
+
+
+        const mouseY =
+            ((y - centerY) / centerY) * 20;
+
+
+        landing.style.setProperty(
+            "--mx",
+            mouseX
+        );
+
+
+        landing.style.setProperty(
+            "--my",
+            mouseY
+        );
+
+    }
+);
+
+
+landing.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        landing.style.setProperty(
+            "--mx",
+            0
+        );
+
+
+        landing.style.setProperty(
+            "--my",
+            0
+        );
+
+    }
+);
+
+
+/* =====================================================
+   10 BIBLE PASSAGES
+===================================================== */
+
+const passages = [
+
+    /* 4 GUIDANCE / ENCOURAGEMENT */
+
+    {
+        text:
+        "Trust the Lord completely rather than relying only on your own understanding; He will make your path straight.",
+
+        reference:
+        "Proverbs 3:5–6 · ESV"
+    },
+
+    {
+        text:
+        "God is with you. He will strengthen you, help you, and hold you firmly when you need Him.",
+
+        reference:
+        "Isaiah 41:10 · ESV"
+    },
+
+    {
+        text:
+        "When you need wisdom, ask God. He gives generously and does not hold back from those who ask.",
+
+        reference:
+        "James 1:5 · ESV"
+    },
+
+    {
+        text:
+        "Give your anxieties to God because He cares for you.",
+
+        reference:
+        "1 Peter 5:7 · ESV"
+    },
+
+
+    /* 3 BIRTHDAY / NEW CHAPTER */
+
+    {
+        text:
+        "This is the day the Lord has made; rejoice and be glad in it.",
+
+        reference:
+        "Psalm 118:24 · ESV"
+    },
+
+    {
+        text:
+        "God has prepared meaningful work and a purpose for you to walk into.",
+
+        reference:
+        "Ephesians 2:10 · ESV"
+    },
+
+    {
+        text:
+        "God makes things beautiful in their proper time. There is a season for everything.",
+
+        reference:
+        "Ecclesiastes 3:1,11 · ESV"
+    },
+
+
+    /* 3 ROMANTIC */
+
+    {
+        text:
+        "You are beautiful, my love; there is no flaw in you.",
+
+        reference:
+        "Song of Solomon 4:7 · ESV"
+    },
+
+    {
+        text:
+        "You have captured my heart with even one look.",
+
+        reference:
+        "Song of Solomon 4:9 · ESV"
+    },
+
+    {
+        text:
+        "My beloved is mine, and I am his.",
+
+        reference:
+        "Song of Solomon 2:16 · ESV"
+    }
+
+];
+
+
+let quoteIndex = 0;
+
+
+const quoteElement =
+    document.getElementById("quote");
+
+
+const referenceElement =
+    document.getElementById("reference");
+
+
+const counterElement =
+    document.getElementById("counter");
+
+
+const nextButton =
+    document.getElementById("nextQuote");
+
+
+function displayQuote(index){
+
+    const passage =
+        passages[index];
+
+
+    quoteElement.style.opacity =
+        "0";
+
+
+    quoteElement.style.transform =
+        "translateY(10px)";
+
+
+    referenceElement.style.opacity =
+        "0";
+
+
+    setTimeout(()=>{
+
+        quoteElement.textContent =
+            `“${passage.text}”`;
+
+
+        referenceElement.textContent =
+            passage.reference;
+
+
+        counterElement.textContent =
+            `${String(index + 1).padStart(2,"0")} / 10`;
+
+
+        quoteElement.style.opacity =
+            "1";
+
+
+        quoteElement.style.transform =
+            "translateY(0)";
+
+
+        referenceElement.style.opacity =
+            "1";
+
+    },350);
+
+}
+
+
+nextButton.addEventListener(
+    "click",
+    ()=>{
+
+        quoteIndex++;
+
+
+        if(quoteIndex >= passages.length){
+
+            quoteIndex = 0;
+
+        }
+
+
+        displayQuote(
+            quoteIndex
+        );
+
+    }
+);
+
+
+displayQuote(0);
+
+
+/* =====================================================
+   BACKGROUND SWITCHER
+===================================================== */
+
+const themeControl =
+    document.querySelector(".theme-control");
+
+
+const themeToggle =
+    document.getElementById("themeToggle");
+
+
+const themeChoices =
+    document.querySelectorAll(".theme-choice");
+
+
+themeToggle.addEventListener(
+    "click",
+    event=>{
+
+        event.stopPropagation();
+
+        themeControl.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+
+themeChoices.forEach(choice=>{
+
+    choice.addEventListener(
+        "click",
+        event=>{
+
+            event.stopPropagation();
+
+
+            const theme =
+                choice.dataset.theme;
+
+
+            document.body.className =
+                `theme-${theme}`;
+
+
+            localStorage.setItem(
+                "benita-theme",
+                theme
+            );
+
+
+            themeControl.classList.remove(
+                "open"
+            );
+
+        }
+    );
+
+});
+
+
+/* Restore theme */
+
+const savedTheme =
+    localStorage.getItem(
+        "benita-theme"
+    );
+
+
+if(savedTheme){
+
+    document.body.className =
+        `theme-${savedTheme}`;
+
+}
+
+
+/* close theme picker */
+
+document.addEventListener(
+    "click",
+    event=>{
+
+        if(
+            !themeControl.contains(
+                event.target
+            )
+        ){
+
+            themeControl.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
